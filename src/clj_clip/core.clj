@@ -2,25 +2,24 @@
   (:import [java.awt Toolkit]
            [java.awt.datatransfer StringSelection DataFlavor UnsupportedFlavorException]))
 
-(defn clipboard []
+(defn- clipboard []
   (.getSystemClipboard (Toolkit/getDefaultToolkit)))
 
 (defn write-clip [text]
-  (let [clipboard (clipboard)
-        selection (StringSelection. text)]
-    (.setContents clipboard selection nil)))
+  (let [selection (StringSelection. text)]
+    (.setContents (clipboard) selection nil)))
 
 
 (defn read-clip []
-  (let [clipboard (clipboard)
-        contents (.getContents clipboard nil)]
+  (let [contents (.getContents (clipboard) nil)]
     (try
-      (when (.isDataFlavorSupported contents DataFlavor/stringFlavor)
-        (.getTransferData contents DataFlavor/stringFlavor))
+      (if (.isDataFlavorSupported contents DataFlavor/stringFlavor)
+        (.getTransferData contents DataFlavor/stringFlavor)
+        (println "String data not available in clipboard"))
       (catch UnsupportedFlavorException e
-        (.printStackTrace e))
+        (println "Unsupported flavor error" (.getMessage e)))
       (catch java.io.IOException e
-        (.printStackTrace e)))))
+        (println "I/O error" (.getMessage e))))))
 
 
 
