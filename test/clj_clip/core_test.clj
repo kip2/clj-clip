@@ -2,6 +2,10 @@
   (:require [clojure.test :refer :all]
             [clj-clip.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest clipboard-test
+  (testing "クリップボードへのデータ保存と取得"
+    (let [data "Hello, clipboard!"]
+      (write-clip data)
+
+      (is (= data (read-clip))))))
+
