@@ -1,7 +1,6 @@
 (ns clj-clip.core
-  (:require [clj-clip.core-test :refer :all])
   (:import [java.awt Toolkit]
-           [java.awt.datatransfer StringSelection]))
+           [java.awt.datatransfer StringSelection DataFlavor UnsupportedFlavorException]))
 
 (defn clipboard []
   (.getSystemClipboard (Toolkit/getDefaultToolkit)))
@@ -11,10 +10,17 @@
         selection (StringSelection. text)]
     (.setContents clipboard selection nil)))
 
-(write-clip "Hello, Test!")
-;; Hello, Test!
 
 (defn read-clip []
-  "Hello, clipboard!")
+  (let [clipboard (clipboard)
+        contents (.getContents clipboard nil)]
+    (try
+      (when (.isDataFlavorSupported contents DataFlavor/stringFlavor)
+        (.getTransferData contents DataFlavor/stringFlavor))
+      (catch UnsupportedFlavorException e
+        (.printStackTrace e))
+      (catch java.io.IOException e
+        (.printStackTrace e)))))
+
 
 
