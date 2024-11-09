@@ -1,6 +1,6 @@
 # clj-clip
 
-A Clojure library designed to ... well, that part is up to you.
+A simple library for handling the clipboard within the Clojure REPL.
 
 [Clojars Library page](https://clojars.org/com.github.kip2/clj-clip)
 
