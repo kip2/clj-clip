@@ -2,9 +2,52 @@
 
 A Clojure library designed to ... well, that part is up to you.
 
+## Installation
+
+Add the following dependency to your project.
+
+Leiningen/Boot
+
+```clojure
+[com.github.kip2/clj-clip "0.1.0"]
+```
+
+Clojure CLI/deps.edn
+
+```clojure
+com.github.kip2/clj-clip {:mvn/version "0.1.0"}
+```
+
+Gradle
+
+```gradle
+implementation("com.github.kip2:clj-clip:0.1.0")
+```
+
+Maven
+
+```xml
+<dependency>
+  <groupId>com.github.kip2</groupId>
+  <artifactId>clj-clip</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
 ## Usage
 
-FIXME
+Here's how to use `clj-clip` in your project
+
+```clojure
+(require '[com.github.kip2 :as clip])
+
+;; To set text to the clipboard
+(clip/write-clip "Hello, Clojure!")
+
+;; To get text from the clipboard
+(clip/read-clip) ; => "Hello, Clojure!"
+
+```
 
 ## License
 
