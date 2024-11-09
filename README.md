@@ -2,6 +2,8 @@
 
 A Clojure library designed to ... well, that part is up to you.
 
+[Clojars Library page](https://clojars.org/com.github.kip2/clj-clip)
+
 ## Installation
 
 Add the following dependency to your project.
