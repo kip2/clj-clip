@@ -38,7 +38,7 @@ Maven
 
 ## Usage
 
-Here's how to use `clj-clip` in your project
+To use the clipboard within the REPL:
 
 ```clojure
 (require '[com.github.kip2 :as clip])
